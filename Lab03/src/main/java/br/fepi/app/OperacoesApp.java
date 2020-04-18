@@ -141,18 +141,26 @@ public class OperacoesApp {
 		EntityTransaction et = em.getTransaction();
 
 		try {
-			// et.begin();
-			// inserir(em);
-			// atualizar(em);
-			// remover(em);
-			// et.commit();
-			// System.out.println("Sucesso na operação!");
-			// buscaSingle(em);
-			buscaList(em);
-		} catch (Exception e) {
-			// et.rollback();
+			//et.begin();
+			//inserir(em);
+			//buscaUm(em);
+			//buscaLista(em);
+			//carrosOrdenadosPelaPlaca(em);
+			//primeiroNomeSilvio(em);
+			//portadorDosVariosUm(em);
+			//naoDevolveramCarro(em);
+			//locadosAoMenosUmaVez(em);
+			//qtdClientes(em);
+			qtdPorClienteLocado(em);
+			//atualizar(em);
+			//remover(em);
+			//et.commit();
+		}
+		catch (Exception e) {
+			//et.rollback();
 			System.out.println("Erro na operação. " + e.getMessage());
-		} finally {
+		}
+		finally {
 			em.close();
 			emf.close();
 		}
