@@ -124,9 +124,9 @@ public class OperacoesApp {
 	}
 	
 	public static void qtdPorClienteLocado(EntityManager em) {
-		List<Object[]> results = em.createQuery("SELECT cli.cpfCliente, cli.nomeCliente, COUNT(c.placaCarro)"
-				+ "FROM Locacao l INNER JOIN l.carro c INNER JOIN l.cliente cli GROUP BY cli.cpfCliente, cli.nomeCliente").getResultList();
-		//O primeiro elemento [0] sera o nome da linha e o segundo [1] sera o nome e o terceiro a qtd [2]
+		List<Object[]> results = em.createQuery(
+				"SELECT c.cpfCliente, c.nomeCliente, COUNT(ca.placaCarro) FROM Locacao l INNER JOIN l.carro ca INNER JOIN l.cliente c GROUP BY c.cpfCliente, c.nomeCliente")
+				.getResultList();
 		for (Object[] objeto : results) {
 			String cpf = (String) objeto[0];
 			String nome = (String) objeto[1];
@@ -151,7 +151,7 @@ public class OperacoesApp {
 			//naoDevolveramCarro(em);
 			//locadosAoMenosUmaVez(em);
 			//qtdClientes(em);
-			qtdPorClienteLocado(em);
+			//qtdPorClienteLocado(em);
 			//atualizar(em);
 			//remover(em);
 			//et.commit();
