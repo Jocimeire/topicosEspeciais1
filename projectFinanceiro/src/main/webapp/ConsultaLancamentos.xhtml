@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Consulta Lancamentos</title>
+</h:head>
+
+<f:metadata>
+	<f:viewAction action="#{consultaLancamentosMBen.consultar}"></f:viewAction>
+</f:metadata>
+
+<h:body>
+	<h:form>
+		<p:messages />
+		<h1>Consulta Lançamentos</h1>
+		<p:dataTable value="#{consultaLancamentosMBean.lancamentos}"
+			var="lancamento" border="1" cellspacing="0" cellpadding="2"
+			paginator="true" rows="5" paginatorPositon="bottom">
+			<p:column hearderText="#" width="5%" sortBy="#{lancamento.id}">
+				<p:outputLabel value="#{lancamento.id}" />
+			</p:column>
+			<p:column hearderText="Pessoa" sortBy="{lancamento.pessoa.nome}" width="10%">
+				<p:outputLabel value="#{lancamento.pessoa.nome}" />
+			</p:column>
+			<p:column hearderText="Descrição" width="20%">
+				<p:outputLabel value="#{lancamento.descricao}" />
+			</p:column>
+			<p:column hearderText="Tipo">
+				<p:outputLabel value="#{lancamento.tipo.descricao}" />
+			</p:column>
+			
+			<p:column hearderText="Valor" width="10%">
+				<p:outputLabel value="#{lancamento.valor}">
+					<f:convertNumber type="currency" locale="pt-br" />
+				</p:outputLabel>
+			</p:column>
+			
+			<p:column hearderText="Data de Vencimento" width="10%"
+				sortBy="#{lancamento.dataVencimento}" style = "text-align : center ">
+				<p:outputLabel value="#{lancamento.dataVencimento}">
+					<f:convertDateTime pattern="dd/MM;yyyy"
+						timeZone="America/Sao_Paulo" />
+				</p:outputLabel>
+			</p:column>
+			
+			<p:column hearderText="Data de Pagamento" width="10%">
+				<p:outputLabel value="#{lancamento.dataPagamento}" style = "text-align : center ">
+					<p:outputLabel value="#{lancamento.dataVencimento}" >
+						<f:convertDateTime pattern="dd/MM;yyyy"
+							timeZone="America/Sao_Paulo" />
+					</p:outputLabel>
+				</p:outputLabel>
+			</p:column>
+
+			<p:column widht="9%">
+				<p:button title="Editar" icon="ui-icon-pencil" />
+				<p:Commandbutton title="Remover" icon="ui-icon-trash" />
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+
+</html>
