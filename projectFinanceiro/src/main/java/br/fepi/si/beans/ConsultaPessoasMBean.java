@@ -9,30 +9,31 @@ import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 
 import br.fepi.si.model.Lancamento;
-import br.fepi.si.repository.Lancamentos;
+import br.fepi.si.model.Pessoa;
+import br.fepi.si.repository.Pessoas;
 import br.fepi.si.util.JpaUtil;
 
 @ManagedBean
 @ViewScoped
-public class ConsultaLancamentosMBean implements Serializable {
+public class ConsultaPessoasMBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private EntityManager em;
 	
-	private List<Lancamento> lancamentos = new ArrayList<>();
+	private List<Pessoa> pessoas = new ArrayList<>();
 	
 	public void consultar() {
 		EntityManager em = JpaUtil.getEntityManager();
-		this.lancamentos = new Lancamentos(em).obterLancamentos();	
+		this.pessoas = new Pessoas(em).obterPessoas();
 		em.close();
 	}
 
-	public List<Lancamento> getLancamentos() {
-		return lancamentos;
+	public List<Pessoa> getPessoas() {
+		return pessoas;
 	}
 
-	public void setLancamentos(List<Lancamento> lancamentos) {
-		this.lancamentos = lancamentos;
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
 	}
 }

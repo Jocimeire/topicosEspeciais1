@@ -18,7 +18,7 @@ public class Pessoas implements Serializable{
 		this.em = em;
 	}
 	
-	public List<Pessoa> obterLancamentos(){
+	public List<Pessoa> obterPessoas(){
 		TypedQuery<Pessoa> query = em.createQuery("FROM Pessoa", Pessoa.class);
 		
 		return query.getResultList();
