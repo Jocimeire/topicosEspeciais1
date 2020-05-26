@@ -33,7 +33,7 @@ public class CriarLancamentoApp {
 			dataVencimento2.set(2013, 12, 10, 0, 0, 0);
 
 			Pessoa cliente = new Pessoa();
-			cliente.setNome("Meire");
+			cliente.setNome("José");
 
 			Pessoa fornecedor = new Pessoa();
 			fornecedor.setNome("Cachaca Store");
