@@ -31,9 +31,16 @@
 					<p:outputLabel value="#{pessoa.nome}" />
 				</p:column>
 
-				<p:column>
-					<p:button title="Editar" icon="ui-icon-pencil" />
-					<p:commandButton title="Remover" icon="ui-icon-trash" />
+				<p:column width="12%">
+					<p:button title="Editar" icon="ui-icon-pencil"
+						outcome="/CadastroPessoa">
+						<f:param name="id" value="#{pessoa.idPessoa}" />
+					</p:button>
+					<p:commandButton title="Remover" icon="ui-icon-trash"
+						action="#{consultaPessoasMBean.excluir}" update="@form">
+						<f:setPropertyActionListener value="#{pessoa}"
+							target="#{consultaPessoasMBean.pessoaSelecionada}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>

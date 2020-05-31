@@ -22,8 +22,7 @@
 			<p:dataTable value="#{consultaLancamentosMBean.lancamentos}"
 				var="lancamento" border="1" cellspacing="0" cellpadding="2"
 				paginator="true" rows="5" paginatorPosition="bottom">
-				<p:column headerText="#" width="5%"
-					sortBy="#{lancamento.idLancamento}">
+				<p:column headerText="#" width="5%" sortBy="#{lancamento.idLancamento}">
 					<p:outputLabel value="#{lancamento.idLancamento}" />
 				</p:column>
 				<p:column headerText="Pessoa" sortBy="#{lancamento.pessoa.nome}">
@@ -32,31 +31,39 @@
 				<p:column headerText="Descrição" width="20%">
 					<p:outputLabel value="#{lancamento.descricao}" />
 				</p:column>
-				<p:column headerText="Tipo">
+				<p:column headerText="Tipo" width="10%">
 					<p:outputLabel value="#{lancamento.tipoLancamento.descricao}" />
 				</p:column>
-				<p:column headerText="Valor">
+				<p:column headerText="Valor" width="15%">
 					<p:outputLabel value="#{lancamento.valor}">
 						<f:convertNumber type="currency" locale="pt_BR" />
 					</p:outputLabel>
 				</p:column>
-				<p:column headerText="Data de Vencimento"
-					sortBy="#{lancamento.dataVencimento}" width="15%">
+				<p:column headerText="Data de Vencimento" width="12%"
+					style="text-align: center" sortBy="#{lancamento.dataVencimento}">
 					<p:outputLabel value="#{lancamento.dataVencimento}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
 					</p:outputLabel>
 				</p:column>
-				<p:column headerText="Data de Pagamento">
+				<p:column headerText="Data de Pagamento" width="12%"
+					style="text-align: center">
 					<p:outputLabel value="#{lancamento.dataPagamento}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
+						<f:convertDateTime pattern="dd/MM/yyyy"
+							timeZone="America/Sao_Paulo" />
 					</p:outputLabel>
 				</p:column>
-
-				<p:column width="11%">
-					<p:button title="Editar" icon="ui-icon-pencil" />
-					<p:commandButton title="Remover" icon="ui-icon-trash" />
+				<p:column width="12%">
+					<p:button title="Editar" icon="ui-icon-pencil"
+						outcome="/CadastroLancamentos">
+						<f:param name="id" value="#{lancamento.idLancamento}" />
+					</p:button>
+					<p:commandButton title="Remover" icon="ui-icon-trash"
+						action="#{consultaLancamentosMBean.excluir}" update="@form">
+						<f:setPropertyActionListener value="#{lancamento}"
+							target="#{consultaLancamentosMBean.lancamentoSelecionado}" />
+					</p:commandButton>
 				</p:column>
-
 			</p:dataTable>
 		</h:form>
 	</ui:define>

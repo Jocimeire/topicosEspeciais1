@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
+
 @Entity
 @Table(name = "lancamento")
 public class Lancamento implements Serializable{
@@ -31,21 +32,21 @@ public class Lancamento implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
+	private Long idLancamento;
 	private Pessoa pessoa;
 	private String descricao;
 	private BigDecimal valor;
-	private TipoLancamentoEnum tipo;
+	private TipoLancamento tipoLancamento;
 	private Date dataVencimento;
 	private Date dataPagamento;
 	
 	@Id
 	@GeneratedValue
-	public Long getId() {
-		return id;
+	public Long getIdLancamento() {
+		return idLancamento;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdLancamento(Long id) {
+		this.idLancamento = id;
 	}
 	
 	@NotNull
@@ -69,7 +70,7 @@ public class Lancamento implements Serializable{
 	}	
 	
 	@NotNull
-	@DecimalMin("0")
+	@DecimalMin ("0")
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValor() {
 		return valor;
@@ -81,11 +82,11 @@ public class Lancamento implements Serializable{
 	@NotNull
 	@Enumerated (EnumType.STRING)
 	@Column(nullable = false)
-	public TipoLancamentoEnum getTipo() {
-		return tipo;
+	public TipoLancamento getTipoLancamento() {
+		return tipoLancamento;
 	}
-	public void setTipo(TipoLancamentoEnum tipo) {
-		this.tipo = tipo;
+	public void setTipoLancamento(TipoLancamento tipo) {
+		this.tipoLancamento = tipo;
 	}
 	
 	@NotNull
@@ -97,7 +98,6 @@ public class Lancamento implements Serializable{
 	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
-	
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_pagamento", nullable = true)
@@ -112,7 +112,7 @@ public class Lancamento implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idLancamento == null) ? 0 : idLancamento.hashCode());
 		return result;
 	}
 	@Override
@@ -124,10 +124,10 @@ public class Lancamento implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Lancamento other = (Lancamento) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idLancamento == null) {
+			if (other.idLancamento != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idLancamento.equals(other.idLancamento))
 			return false;
 		return true;
 	}

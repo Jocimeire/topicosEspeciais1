@@ -6,6 +6,11 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+	<f:metadata>
+		<f:viewAction action="#{cadastroPessoasMBean.preparaCadastrados}"/>
+		<f:viewParam name="id" value="#{cadastroPessoasMBean.pessoa}"/>
+	</f:metadata>
+
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<ui:define name="titulo">Cadastro de Pessoas</ui:define>
@@ -17,13 +22,18 @@
 			<h1>Cadastro de Pessoa</h1>
 			<p:panelGrid columns="2" id="painel">
 				<p:outputLabel value="Identificação" for="id" />
-				<p:inputNumber id="id" required="true"/>
+				<p:inputText id="id" required="true"
+					value="#{cadastroPessoasMBean.pessoa.idPessoa}">
+					<f:convertNumber locale="pt_BR" maxFractionDigits="0"
+						minFractionDigits="0" />
+				</p:inputText>
 				
 				<p:outputLabel value="Nome" for="nome"/>
-				<p:autoComplete id="nome" size="120" required="true"/>
+				<p:autoComplete id="nome" size="120" required="true" value="#{cadastroPessoasMBean.pessoa.nome}"/>
 				
 				<p:outputLabel/>
-				<p:commandButton value="Salvar" icon="ui-icon-disk" update="@form"/>
+				<p:commandButton value="Salvar" icon="ui-icon-disk" update="@form"
+					action="#{cadastroPessoasMBean.salvar}" />
 				
 			</p:panelGrid>
 		</h:form>
